@@ -2,19 +2,28 @@
   "name": "notifyme",
   "version": "1.0.0",
   "description": "A simple reminder that makes use of push notification.",
-  "main": "index.js",
+  "main": "app.js",
   "engines": {
     "node": ">=6.9.5"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Roshin Varghese",
   "license": "Apache-2.0",
   "dependencies": {
-    "push.js": "^1.0.5",
-    "later": "^1.2.0"
+    "express": "^4.16.2",
+    "later": "*",
+    "push.js": "^1.0.5"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roshin8/NotifyMe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/roshin8/NotifyMe/issues"
+  },
+  "homepage": "https://github.com/roshin8/NotifyMe#readme"
 }

@@ -11464,16 +11464,7 @@
 	} else if (typeof _gaq !== 'undefined') {
 	    _gaq.push(["_trackEvent", "Blocking Ads", GlonfXuqVJae, undefined, undefined, true]);
 	}
-	$(document).on("submit", "form.search", function() {
-	    var e = $(this).find("input[name='q']")
-	      , k = e.val();
-	    if (k.length < 2) {
-		e.attr("error", true);
-		return false;
-	    }
-	    window.location.href = window.url + "search/" + $.trim(k).replace(new RegExp("\\ ","g"), "-") + "/";
-	    return false;
-	});
+
 	$(document).on("click", ".tabs > [scrollbar] > ul > li:not([active])", function() {
 	    $(".tabs > [scrollbar] li").removeAttr("active");
 	    $(this).attr("active", true);
@@ -11570,139 +11561,139 @@
 		$(this).closest("form").removeAttr("must-login");
 	    }
 	});
-	$(document).on("click", "[submit]", function() {
-	    window.form = $("form[" + $(this).attr("submit") + "]")[0];
-	    if ($(window.form).attr("must-login") && !window.login) {
-		loginSwal();
-	    } else {
-		$(window.form).submit();
-	    }
-	    return false;
-	});
-	window.ajaxform = function() {
-	    $(document).off("submit", "form[ajax]").on("submit", "form[ajax]", function() {
-		window.form = $(this)[0];
-		window.button = $(this).find("button[type='submit']")[0];
-	    });
-	    $("form[ajax]").ajaxForm({
-		beforeSubmit: function(arr, $form, options) {
-		    window.form = $form[0];
-		    window.button = $(window.form).find("button[type='submit']")[0];
-		    if ($(window.form).attr("must-login") && !window.login) {
-			loginSwal();
-			return false;
-		    }
-		    if (invalidInputs(window.form))
-			return false;
-		    $(window.button).prop("disabled", true);
-		    $(window.form).find(".tooltipstered[tooltip-error]").removeAttr("tooltip-error").tooltipster("destroy");
-		},
-		error: function() {
-		    anError();
-		},
-		success: function(data) {
-		    try {
-			var response = $.parseJSON(data);
-			if (response.result == "true") {
-			    if (response.text && !response.callback) {
-				swal({
-				    title: lang.success_title,
-				    text: response.text,
-				    type: "success",
-				});
-			    }
-			    if ($(window.form).attr("reset") == "true")
-				$(window.form)[0].reset();
-			    if (response.callback) {
-				window[response.callback](response);
-			    } else if (response.redirect) {
-				setTimeout(function() {
-				    if (response.redirect == "reload")
-					window.location.reload();
-				    else
-					window.location.href = response.redirect;
-				}, response.timeout);
-			    } else if ($(window.form).attr("redirect")) {
-				setTimeout(function() {
-				    if ($(window.form).attr("redirect") == "reload")
-					window.location.reload();
-				    else
-					window.location.href = $(window.form).attr("redirect");
-				}, $(window.form).attr("delay"));
-			    }
-			} else {
-			    var elements = new Array
-			      , type = new String
-			      , content = new String
-			      , title = new String;
-			    $(response.errors).each(function(i, error) {
-				if ($(window.form).find("*[tip='" + error.element + "']").length)
-				    var element = $(window.form).find("*[tip='" + error.element + "']");
-				else
-				    var element = $(window.form).find("*[name='" + error.element + "']");
-				if ($(element).length) {
-				    $(element).attr({
-					"tooltip-error": "",
-					"error": ""
-				    });
-				    if (error.text != "mark-error") {
-					$(element).attr("title", error.text);
-					elements.push($(element));
-				    }
-				} else {
-				    content = content + "<li>" + error.text + "</li>";
-				}
-			    });
-			    if (elements.length > 0) {
-				if (!$(".modal:visible").length) {
-				    $("html, body").animate({
-					scrollTop: $("[error]:first").offset().top - 75
-				    }, 300);
-				}
-				window.tooltip();
-				setTimeout(function() {
-				    $(window.form).find(".tooltipstered[tooltip-error]").tooltipster("show");
-				}, 50);
-			    } else {
-				switch (response.type) {
-				case "info":
-				    title = lang.info_title;
-				    type = "info";
-				    break;
-				case "warning":
-				    title = lang.warning_title;
-				    type = "warning";
-				    break;
-				default:
-				    title = lang.error_title;
-				    type = "error";
-				    break;
-				}
-				swal({
-				    title: title,
-				    text: content,
-				    type: type,
-				});
-			    }
-			    if (response.redirect) {
-				setTimeout(function() {
-				    window.location.href = response.redirect;
-				}, response.timeout);
-			    }
-			}
-			if ($(window.form).attr("callback"))
-			    window[$(window.form).attr("callback")](response);
-		    } catch (error) {
-			anError();
-		    }
-		    setTimeout(function() {
-			$(window.button).prop("disabled", false);
-		    }, 2000);
-		}
-	    });
-	    $("form[ajax] button[submit]").attr("type", "submit").removeAttr("submit");
-	}
-	window.ajaxform();
+//	$(document).on("click", "[submit]", function() {
+//	    window.form = $("form[" + $(this).attr("submit") + "]")[0];
+//	    if ($(window.form).attr("must-login") && !window.login) {
+//		loginSwal();
+//	    } else {
+//		$(window.form).submit();
+//	    }
+//	    return false;
+//	});
+//	window.ajaxform = function() {
+//	    $(document).off("submit", "form[ajax]").on("submit", "form[ajax]", function() {
+//		window.form = $(this)[0];
+//		window.button = $(this).find("button[type='submit']")[0];
+//	    });
+//	    $("form[ajax]").ajaxForm({
+//		beforeSubmit: function(arr, $form, options) {
+//		    window.form = $form[0];
+//		    window.button = $(window.form).find("button[type='submit']")[0];
+//		    if ($(window.form).attr("must-login") && !window.login) {
+//			loginSwal();
+//			return false;
+//		    }
+//		    if (invalidInputs(window.form))
+//			return false;
+//		    $(window.button).prop("disabled", true);
+//		    $(window.form).find(".tooltipstered[tooltip-error]").removeAttr("tooltip-error").tooltipster("destroy");
+//		},
+//		error: function() {
+//		    anError();
+//		},
+//		success: function(data) {
+//		    try {
+//			var response = $.parseJSON(data);
+//			if (response.result == "true") {
+//			    if (response.text && !response.callback) {
+//				swal({
+//				    title: lang.success_title,
+//				    text: response.text,
+//				    type: "success",
+//				});
+//			    }
+//			    if ($(window.form).attr("reset") == "true")
+//				$(window.form)[0].reset();
+//			    if (response.callback) {
+//				window[response.callback](response);
+//			    } else if (response.redirect) {
+//				setTimeout(function() {
+//				    if (response.redirect == "reload")
+//					window.location.reload();
+//				    else
+//					window.location.href = response.redirect;
+//				}, response.timeout);
+//			    } else if ($(window.form).attr("redirect")) {
+//				setTimeout(function() {
+//				    if ($(window.form).attr("redirect") == "reload")
+//					window.location.reload();
+//				    else
+//					window.location.href = $(window.form).attr("redirect");
+//				}, $(window.form).attr("delay"));
+//			    }
+//			} else {
+//			    var elements = new Array
+//			      , type = new String
+//			      , content = new String
+//			      , title = new String;
+//			    $(response.errors).each(function(i, error) {
+//				if ($(window.form).find("*[tip='" + error.element + "']").length)
+//				    var element = $(window.form).find("*[tip='" + error.element + "']");
+//				else
+//				    var element = $(window.form).find("*[name='" + error.element + "']");
+//				if ($(element).length) {
+//				    $(element).attr({
+//					"tooltip-error": "",
+//					"error": ""
+//				    });
+//				    if (error.text != "mark-error") {
+//					$(element).attr("title", error.text);
+//					elements.push($(element));
+//				    }
+//				} else {
+//				    content = content + "<li>" + error.text + "</li>";
+//				}
+//			    });
+//			    if (elements.length > 0) {
+//				if (!$(".modal:visible").length) {
+//				    $("html, body").animate({
+//					scrollTop: $("[error]:first").offset().top - 75
+//				    }, 300);
+//				}
+//				window.tooltip();
+//				setTimeout(function() {
+//				    $(window.form).find(".tooltipstered[tooltip-error]").tooltipster("show");
+//				}, 50);
+//			    } else {
+//				switch (response.type) {
+//				case "info":
+//				    title = lang.info_title;
+//				    type = "info";
+//				    break;
+//				case "warning":
+//				    title = lang.warning_title;
+//				    type = "warning";
+//				    break;
+//				default:
+//				    title = lang.error_title;
+//				    type = "error";
+//				    break;
+//				}
+//				swal({
+//				    title: title,
+//				    text: content,
+//				    type: type,
+//				});
+//			    }
+//			    if (response.redirect) {
+//				setTimeout(function() {
+//				    window.location.href = response.redirect;
+//				}, response.timeout);
+//			    }
+//			}
+//			if ($(window.form).attr("callback"))
+//			    window[$(window.form).attr("callback")](response);
+//		    } catch (error) {
+//			anError();
+//		    }
+//		    setTimeout(function() {
+//			$(window.button).prop("disabled", false);
+//		    }, 2000);
+//		}
+//	    });
+//	    $("form[ajax] button[submit]").attr("type", "submit").removeAttr("submit");
+//	}
+//	window.ajaxform();
 	$(document).on("click", ".tooltipstered[tooltip-error]", function() {
 	    $(this).removeAttr("tooltip-error").tooltipster("destroy");
 	});
@@ -11750,17 +11741,17 @@
 	}
 	window.scrollbar();
 	$("[hidden-scroll]").wrapInner('<div class="hsw" style="margin-right: -' + window.scrollbarWidth + 'px"></div>');
-	$.post(window.url + "async/", function(data) {
-	    $("body").append(data);
-	    if (!window.login) {
-		$.post(window.url + "ajax/user/user.ajax.php?a=facebook-login-url", function(url) {
-		    $("a[facebook-login-url]").attr("href", url).removeAttr("false");
-		});
-	    }
-	});
-	$(document).on("click", "a[facebook-login-url]:not([false])", function() {
-	    $(this).attr("false", true).find("span").text(lang.please_wait_label);
-	});
+//	$.post(window.url + "async/", function(data) {
+//	    $("body").append(data);
+//	    if (!window.login) {
+//		$.post(window.url + "ajax/user/user.ajax.php?a=facebook-login-url", function(url) {
+//		    $("a[facebook-login-url]").attr("href", url).removeAttr("false");
+//		});
+//	    }
+//	});
+//	$(document).on("click", "a[facebook-login-url]:not([false])", function() {
+//	    $(this).attr("false", true).find("span").text(lang.please_wait_label);
+//	});
 	$(document).on("click", "*[modal]", function() {
 	    modalOpen(this);
 	    return false;
@@ -11846,9 +11837,9 @@
 	    text: lang.an_error_text,
 	    type: "error",
 	});
-	setTimeout(function() {
-	    $(window.button).prop("disabled", false);
-	}, 2500);
+//	setTimeout(function() {
+//	    $(window.button).prop("disabled", false);
+//	}, 2500);
     }
     function loginSwal() {
 	swal({

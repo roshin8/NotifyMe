@@ -6683,7 +6683,7 @@ article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summ
 	padding: 15px 45px 15px 17px;
     }
     
-    .error .search button {
+    .error .search a {
 	border: none;
 	width: 60px;
 	height: 60px;
@@ -6693,11 +6693,7 @@ article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summ
 	top: -5px;
     }
     
-    .error .search .wd-icon {
-	width: 18px;
-	height: 18px;
-	background-position-x: -72px;
-	top: 3px;
-	left: -1px;
+    .error .search a i {
+	top: 15px;
     }
     
