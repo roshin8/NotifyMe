@@ -10811,12 +10811,12 @@
 		    key = encodeURIComponent(String(key));
 		    key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
 		    key = key.replace(/[\(\)]/g, escape);
-		    return (document.cookie = [key, '=', value, attributes.expires ? '; expires=' + attributes.expires.toUTCString() : '', attributes.path ? '; path=' + attributes.path : '', attributes.domain ? '; domain=' + attributes.domain : '', attributes.secure ? '; secure' : ''].join(''));
+		    return (document.cookie = [key, '=', value, attributes.expires ? ', expires=' + attributes.expires.toUTCString() : '', attributes.path ? ', path=' + attributes.path : '', attributes.domain ? ', domain=' + attributes.domain : '', attributes.secure ? ', secure' : ''].join(''));
 		}
 		if (!key) {
 		    result = {};
 		}
-		var cookies = document.cookie ? document.cookie.split('; ') : [];
+		var cookies = document.cookie ? document.cookie.split(', ') : [];
 		var rdecode = /(%[0-9A-Z]{2})+/g;
 		var i = 0;
 		for (; i < cookies.length; i++) {
@@ -11927,10 +11927,13 @@
     }
     function reoptions() {
 	if (typeof Cookies.get("options") == "undefined")
-	    Cookies.set("options", window.doptions, {
-		expires: 7,
-		domain: "." + window.domain
-	    });
-	// window.options = $.parseJSON(Cookies.get("options"));
+	    {
+            Cookies.set("options", window.doptions, {
+            expires: 7,
+            domain: "." + window.domain
+            });
+	    }
+
+	window.options = $.parseJSON(Cookies.get("options"));
     }
     

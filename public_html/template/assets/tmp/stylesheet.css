@@ -6106,13 +6106,13 @@ article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summ
     }
     
     header .unlogged .login > a {
-	display: none;
+	/* display: none; */
     }
     
     header .unlogged .login .row > div:first-child {
 	padding-right: 5px;
     }
-    
+
     header .unlogged .login .row > div:last-child {
 	padding-left: 0;
     }
@@ -6409,7 +6409,7 @@ article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summ
 	}
     
 	header .left nav > button[search] {
-	    display: inline-block;
+	    /*display: inline-block;*/
 	}
     
 	header .left nav > .dropdown {
@@ -6694,6 +6694,6 @@ article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summ
     }
     
     .error .search a i {
-	top: 15px;
+	top: 18px;
     }
     
