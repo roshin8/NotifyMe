@@ -11934,6 +11934,6 @@
             });
 	    }
 
-	window.options = $.parseJSON(Cookies.get("options"));
+	//window.options = $.parseJSON(Cookies.get("options"));
     }
     
