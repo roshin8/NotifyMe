@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, 'public_html')))
 
 
 // Server Initialising
-const port = 3001;
+const port = 3002;
 app.listen(port, function(){
     console.log('Server started on Port: ' + port);
 })

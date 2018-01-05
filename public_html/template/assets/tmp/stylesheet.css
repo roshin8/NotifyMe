@@ -4328,15 +4328,14 @@ article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summ
     #toast-container > div {
 	position: relative;
 	overflow: hidden;
-	margin: 0 0 6px;
-	padding: 15px 15px 15px 50px;
-	width: 300px;
+	/*margin: 0 0 6px;
+	padding: 15px 15px 15px 50px;*/
+	width: 100%;
 	-moz-border-radius: 3px 3px 3px 3px;
 	-webkit-border-radius: 3px 3px 3px 3px;
 	border-radius: 3px 3px 3px 3px;
 	background-position: 15px center;
 	background-repeat: no-repeat;
-	color: #ffffff;
 	opacity: 0.9;
     }
     
@@ -6417,11 +6416,13 @@ article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summ
 	}
     
 	header .left nav > button[search] {
-	    /*display: inline-block;*/
+	    display: inline-block;
+	    float: left;
+	    margin-right: 10px;
 	}
     
 	header .left nav > .dropdown {
-	    float: right;
+	    float: left;
 	}
     
 	header .left .search {
@@ -6596,7 +6597,7 @@ article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summ
 	}
     
 	header nav button[search] span {
-	    font-size: 50%;
+	    /*font-size: 50%;*/
 	}
     
 	header nav button[search] i {
@@ -7344,4 +7345,235 @@ article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summ
 
 .select2-container--classic.select2-container--open .select2-dropdown {
     border-color: #5897fb;
+}
+
+
+#toast-container {
+	display: block;
+	position: fixed;
+	z-index: 10000
+}
+
+@media only screen and (max-width: 600px) {
+	#toast-container {
+		min-width: 100%;
+		bottom: 0%
+	}
+}
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+	#toast-container {
+		left: 5%;
+		bottom: 7%;
+		max-width: 90%
+	}
+}
+
+@media only screen and (min-width: 993px) {
+	#toast-container {
+		top: 10%;
+		right: 7%;
+		max-width: 86%
+	}
+}
+.toast {
+	border-radius: 2px;
+	top: 35px;
+	width: auto;
+	margin-top: 10px;
+	position: relative;
+	max-width: 100%;
+	height: auto;
+	min-height: 44px;
+	line-height: 1.5em;
+	word-break: break-all;
+	background-color: rgba(12, 10, 10, 0.9);
+	padding: 10px 25px;
+	color: #ccc;
+	font-size: 90%;
+	font-weight: 800;
+	text-transform: uppercase;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	cursor: default
+}
+
+.toast .toast-action {
+	color: #eeff41;
+	font-weight: 500;
+	margin-right: -25px;
+	margin-left: 3rem
+}
+
+.toast.rounded {
+	border-radius: 24px
+}
+
+@media only screen and (max-width: 600px) {
+	.toast {
+		width: 100%;
+		border-radius: 0
+	}
+}
+.z-depth-1, .toast {
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.material-tooltip {
+	padding: 10px;
+	z-index: 2000;
+	background-color: rgba(12, 10, 10, 0.7);
+	border-radius: 2px;
+	color: #ccc;
+	font-size: 90%;
+	font-weight: 800;
+	text-transform: uppercase;
+	position: absolute;
+	opacity: 0;
+	text-align: center;
+	max-width: 100%;
+	overflow: hidden;
+	left: 0px;
+	top: 10px;
+	pointer-events: none;
+	visibility: hidden
+}
+
+/*!
+ * Waves v0.6.0
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
+ * https://github.com/fians/Waves/blob/master/LICENSE
+ */
+
+.waves-effect {
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	overflow: hidden;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	vertical-align: middle;
+	z-index: 1;
+	-webkit-transition: .3s ease-out;
+	transition: .3s ease-out
+}
+
+.waves-effect .waves-ripple {
+	position: absolute;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	margin-top: -10px;
+	margin-left: -10px;
+	opacity: 0;
+	background: rgba(0, 0, 0, 0.4);
+	-webkit-transition: all 0.7s ease-out;
+	transition: all 0.7s ease-out;
+	-webkit-transition-property: opacity, -webkit-transform;
+	transition-property: opacity, -webkit-transform;
+	transition-property: transform, opacity;
+	transition-property: transform, opacity, -webkit-transform;
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	pointer-events: none
+}
+
+.waves-effect.waves-light .waves-ripple {
+	background-color: rgba(255, 255, 255, 0.45)
+}
+
+.waves-effect.waves-red .waves-ripple {
+	background-color: rgba(231, 77, 60, 0.5)
+}
+
+.waves-effect.waves-yellow .waves-ripple {
+	background-color: rgba(252, 207, 21, 0.5)
+}
+
+.waves-effect.waves-orange .waves-ripple {
+	background-color: rgba(255, 152, 0, 0.7)
+}
+
+.waves-effect.waves-purple .waves-ripple {
+	background-color: rgba(156, 39, 176, 0.7)
+}
+
+.waves-effect.waves-green .waves-ripple {
+	background-color: rgba(76, 175, 80, 0.7)
+}
+
+.waves-effect.waves-teal .waves-ripple {
+	background-color: rgba(0, 150, 136, 0.7)
+}
+
+.waves-effect input[type="button"],
+.waves-effect input[type="reset"],
+.waves-effect input[type="submit"] {
+	border: 0;
+	font-style: normal;
+	font-size: inherit;
+	text-transform: inherit;
+	background: none
+}
+
+.waves-effect img {
+	position: relative;
+	z-index: -1
+}
+
+.waves-notransition {
+	-webkit-transition: none !important;
+	transition: none !important
+}
+
+.waves-circle {
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%)
+}
+
+.waves-input-wrapper {
+	border-radius: 0.2em;
+	vertical-align: bottom
+}
+
+.waves-input-wrapper .waves-button-input {
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 1
+}
+
+.waves-circle {
+	text-align: center;
+	width: 2.5em;
+	height: 2.5em;
+	line-height: 2.5em;
+	border-radius: 50%;
+	-webkit-mask-image: none
+}
+
+.waves-block {
+	display: block
+}
+
+.waves-effect .waves-ripple {
+	z-index: -1
 }
