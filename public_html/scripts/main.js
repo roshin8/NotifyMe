@@ -32,7 +32,7 @@ function timedtriggerPush(userText, delay) {
         body: userText,
         icon: '/template/assets/images/icon.png',
         link: '/#',
-        timeout: 4000,
+        timeout: 60000,
         onClick: function () {
             console.log("Fired!");
             window.focus();
